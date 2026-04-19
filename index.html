@@ -205,6 +205,85 @@ pre.code .k{color:#D9B99B}
 pre.code .s{color:#A9C9A4}
 pre.code .c{color:#8A8275;font-style:italic}
 
+/* ---------- DEPARTMENTS (CIC) ---------- */
+.dept{
+  padding:56px 0;border-bottom:1px solid var(--ink-ghost);
+}
+.dept:last-child{border-bottom:none}
+.dept-head{margin-bottom:28px}
+.dept-kicker{
+  display:flex;align-items:center;gap:14px;margin-bottom:14px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--oxblood);
+}
+.dept-kicker::before{
+  content:"";display:inline-block;width:28px;height:1px;background:var(--oxblood);
+}
+.dept-head h3{
+  font-family:var(--serif);font-weight:400;font-size:36px;
+  line-height:1.15;margin:0 0 14px;letter-spacing:-.01em;
+}
+.dept-head p{color:var(--ink-soft);max-width:70ch;margin:0;font-size:17px;line-height:1.6}
+
+.task-card{
+  margin:24px 0;padding:26px 30px;background:var(--paper-deep);
+  border:1px solid var(--ink);position:relative;
+}
+.task-card::before{
+  content:"";position:absolute;top:-1px;left:-1px;width:56px;height:3px;background:var(--oxblood);
+}
+.task-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--oxblood);display:block;margin-bottom:6px;
+}
+.task-card h4{
+  font-family:var(--serif);font-weight:500;font-size:22px;
+  line-height:1.3;margin:0 0 4px;letter-spacing:-.005em;
+}
+
+.field{margin-top:18px}
+.field-label{
+  display:block;font-family:var(--mono);font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;
+  padding-left:12px;border-left:2px solid var(--oxblood);
+}
+.field p{margin:0 0 8px;max-width:68ch;color:var(--ink);font-size:15.5px;line-height:1.6}
+.field p:last-child{margin-bottom:0}
+
+.prompt-box{
+  background:#1A1814;color:#EFE8D8;padding:18px 22px;margin:0;
+  font-family:var(--mono);font-size:12.5px;line-height:1.65;
+  white-space:pre-wrap;overflow-x:auto;border-left:3px solid var(--oxblood);
+}
+.prompt-box .k{color:#D9B99B}
+.prompt-box .c{color:#8A8275;font-style:italic}
+.prompt-box .ph{color:#8FB5CF;font-style:italic}
+
+.output-box{
+  background:#FAF5E7;border:1px dashed var(--ink-ghost);
+  padding:16px 20px;font-size:14.5px;color:var(--ink);line-height:1.6;
+}
+.output-box .meta{
+  font-family:var(--mono);font-size:10px;color:var(--ink-soft);
+  margin-bottom:10px;letter-spacing:.2em;text-transform:uppercase;
+}
+.output-box table{margin:6px 0;font-size:13px;border-collapse:collapse;width:100%}
+.output-box table th,.output-box table td{padding:6px 10px;font-size:12.5px;border-bottom:1px solid var(--ink-ghost)}
+.output-box table th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+.output-box p{margin:4px 0}
+.output-box strong{color:var(--ink)}
+.output-box ul{margin:6px 0 6px 18px}
+.output-box li{margin-bottom:3px}
+.output-box .sum{
+  margin-top:10px;padding-top:10px;border-top:1px solid var(--ink-ghost);
+  font-family:var(--mono);font-size:12px;
+}
+
+.note-inline{
+  border-left:2px solid var(--oxblood);padding:4px 0 4px 14px;
+  color:var(--ink-soft);font-size:14.5px;font-style:italic;
+}
+
 /* ---------- FAQ ---------- */
 details{
   border-bottom:1px solid var(--ink-ghost);padding:18px 0;
@@ -305,6 +384,7 @@ footer a:hover{color:var(--oxblood)}
         <li><a href="#prompting">Viết prompt hiệu quả</a></li>
         <li><a href="#usecases">Ứng dụng thường gặp</a></li>
         <li><a href="#safety">Bảo mật &amp; giới hạn</a></li>
+        <li><a href="#departments">Hướng dẫn theo phòng ban</a></li>
         <li><a href="#faq">Câu hỏi thường gặp</a></li>
         <li><a href="#resources">Tài nguyên</a></li>
       </ol>
@@ -553,9 +633,879 @@ Giới hạn 120 từ, kết thúc bằng lời cảm ơn.</pre>
         </ul>
       </section>
 
+
       <!-- 06 ============================================== -->
+      <section id="departments" class="body-section">
+        <span class="sec-num">§ 06 · CIC · Thực hành theo phòng ban</span>
+        <h2>Hướng dẫn <em>theo phòng ban</em></h2>
+        <p>
+          Phần này liệt kê các tác vụ thường gặp tại <strong>CIC</strong> — cacao,
+          chocolate, xuất khẩu — kèm prompt có thể sao chép nguyên đoạn và ví dụ
+          đầu ra rút gọn. Mọi prompt đều tuân theo nguyên tắc <em>CRAFT</em> ở §03
+          và quy tắc bảo mật ở §05. Hãy thay các phần <code style="font-family:var(--mono);background:var(--paper-deep);padding:2px 6px;border:1px solid var(--ink-ghost);font-size:13px">[trong ngoặc vuông]</code>
+          bằng nội dung thực tế trước khi gửi Claude.
+        </p>
+
+        <!-- ═══ DEPT I · NÔNG VỤ ═══ -->
+        <div class="dept" id="dept-nongvu">
+          <div class="dept-head">
+            <div class="dept-kicker">Dept. I · Nông vụ &amp; Vườn cacao</div>
+            <h3>Vườn, lô, chi phí, lịch chăm sóc</h3>
+            <p>
+              Bộ phận Nông vụ vận hành vườn, theo dõi chi phí theo lô, và lên kế
+              hoạch chăm sóc. Các tác vụ dưới đây giúp tổ trưởng, kỹ sư và quản lý
+              vườn tiết kiệm thời gian ghi chép và tổng hợp.
+            </p>
+          </div>
+
+          <!-- T.01 -->
+          <article class="task-card">
+            <span class="task-num">T.01</span>
+            <h4>Ghi &amp; phân loại chi phí lô cacao theo mẫu chuẩn</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Hằng ngày, tổ trưởng ghi chi phí nhân công, vật tư, dịch vụ cho từng lô. Cuối tuần cần tổng hợp bảng gửi kế toán, phân loại <strong>KTCB</strong> (vốn hoá vào tài sản sinh học) và <strong>SXKD</strong> (chi phí kỳ) theo <strong>TT 99/2025/TT-BTC</strong>.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu — copy nguyên đoạn</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là trợ lý kế toán nông nghiệp của CIC.&lt;/role&gt;
+
+&lt;context&gt;
+Công ty CIC trồng cacao tại Đắk Lắk. Chi phí ghi theo lô (plot),
+phân loại thành:
+ · KTCB — vốn hoá vào tài sản sinh học
+ · SXKD — chi phí sản xuất kinh doanh trong kỳ
+Tham chiếu TT 99/2025/TT-BTC.
+&lt;/context&gt;
+
+&lt;input&gt;
+<span class="ph">[dán ghi chép thô — mỗi dòng một khoản chi, ví dụ:
+"12/4 — Lô A3 — 5 công làm cỏ, 250k/công
+12/4 — Lô A3 — 20kg phân NPK Đầu Trâu, 380k/bao
+13/4 — Lô B1 — sửa giàn tưới, 1.2tr"]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+1) Nhóm theo ngày và theo lô.
+2) Phân loại KTCB / SXKD cho từng dòng.
+3) Trình bày bảng với các cột:
+   Ngày | Lô | Hạng mục | Số lượng | Đơn giá | Thành tiền | Phân loại | Ghi chú.
+4) Tổng cộng theo phân loại ở cuối bảng.
+5) Đánh dấu [?] những khoản chưa chắc để người dùng xác nhận.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <div class="meta">Trích bảng kết quả</div>
+                <table>
+                  <thead><tr><th>Ngày</th><th>Lô</th><th>Hạng mục</th><th style="text-align:right">Thành tiền</th><th>Phân loại</th></tr></thead>
+                  <tbody>
+                    <tr><td>12/4</td><td>A3</td><td>Làm cỏ (5 công)</td><td style="text-align:right">1.250.000</td><td>SXKD</td></tr>
+                    <tr><td>12/4</td><td>A3</td><td>Phân NPK 20 kg</td><td style="text-align:right">380.000</td><td>SXKD</td></tr>
+                    <tr><td>13/4</td><td>B1</td><td>Sửa giàn tưới</td><td style="text-align:right">1.200.000</td><td>KTCB&nbsp;[?]</td></tr>
+                  </tbody>
+                </table>
+                <div class="sum"><strong>Tổng SXKD:</strong> 1.630.000 đ &nbsp;·&nbsp; <strong>Tổng KTCB:</strong> 1.200.000 đ</div>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Khoản "sửa giàn tưới" có thể là sửa chữa (SXKD) hoặc cải tạo (KTCB) tuỳ giá trị và tuổi thọ. Luôn hỏi lại kế toán trưởng với khoản Claude đánh dấu [?].</p>
+            </div>
+          </article>
+
+          <!-- T.02 -->
+          <article class="task-card">
+            <span class="task-num">T.02</span>
+            <h4>So sánh BvA (Budget vs Actual) chi phí theo lô cuối vụ</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Cuối vụ, quản lý vườn cần so sánh chi phí thực tế với ngân sách đầu vụ để biết lô nào vượt/hụt, và rút kinh nghiệm cho vụ sau.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là chuyên viên FP&amp;A phân tích chi phí nông nghiệp.&lt;/role&gt;
+
+&lt;context&gt;
+Tổng kết vụ Xuân 2026 cho CIC — so sánh chi phí SXKD thực tế
+với ngân sách đã duyệt cho từng lô.
+&lt;/context&gt;
+
+&lt;budget&gt;
+<span class="ph">[bảng: Lô | Diện tích (ha) | Ngân sách SXKD (đ)]</span>
+&lt;/budget&gt;
+
+&lt;actual&gt;
+<span class="ph">[bảng: Lô | Chi phí SXKD thực tế (đ)]</span>
+&lt;/actual&gt;
+
+&lt;task&gt;
+1) Variance = Actual − Budget và %Variance cho mỗi lô.
+2) Chi phí/ha thực tế cho mỗi lô.
+3) TOP 3 lô vượt ngân sách nhiều nhất.
+4) Với mỗi lô trong TOP 3, nêu 2-3 nguyên nhân khả dĩ (theo
+   thường lệ ngành cacao Tây Nguyên, KHÔNG bịa số liệu).
+5) Kết thúc bằng 3 khuyến nghị hành động cụ thể.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <div class="meta">Bảng variance + nhận định</div>
+                <table>
+                  <thead><tr><th>Lô</th><th>DT (ha)</th><th>Budget</th><th>Actual</th><th>%Var</th></tr></thead>
+                  <tbody>
+                    <tr><td>A3</td><td>2.5</td><td>50.0tr</td><td>62.3tr</td><td style="color:var(--oxblood)"><strong>+24,6%</strong></td></tr>
+                    <tr><td>B1</td><td>3.0</td><td>48.0tr</td><td>45.1tr</td><td>−6,0%</td></tr>
+                    <tr><td>C2</td><td>2.0</td><td>40.0tr</td><td>53.8tr</td><td style="color:var(--oxblood)"><strong>+34,5%</strong></td></tr>
+                  </tbody>
+                </table>
+                <p><strong>TOP 3 vượt ngân sách:</strong> C2 (+34,5%), A3 (+24,6%), D4 (+18,2%).</p>
+                <p><strong>Nguyên nhân khả dĩ cho C2:</strong></p>
+                <ul>
+                  <li>Phát sinh đột xuất phân bón do dấu hiệu thiếu vi lượng</li>
+                  <li>Mưa sớm làm cỏ mọc nhanh — tăng công làm cỏ</li>
+                  <li>Có thể phân loại nhầm KTCB/SXKD ở kỳ trước, nay bù đắp</li>
+                </ul>
+                <p><strong>Khuyến nghị:</strong> duyệt phát sinh &gt; 10% ngân sách, cảnh báo khi chi phí/ha vượt trung bình toàn vườn &gt; 15%, rà phân loại KTCB/SXKD của C2 với kế toán trưởng.</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Nguyên nhân Claude đưa là <em>phỏng đoán nghiệp vụ</em> — đối chiếu sổ ghi thực địa và trao đổi với tổ trưởng trước khi đưa vào báo cáo chính thức.</p>
+            </div>
+          </article>
+
+          <!-- T.03 -->
+          <article class="task-card">
+            <span class="task-num">T.03</span>
+            <h4>Lịch chăm sóc 3 tháng theo mùa vụ</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Đầu mỗi chu kỳ, kỹ sư cần lên lịch tỉa cành, bón phân, phun thuốc, theo đặc điểm khí hậu Tây Nguyên và giai đoạn sinh trưởng.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là kỹ sư nông nghiệp chuyên cacao, 10 năm kinh
+nghiệm tại Tây Nguyên.&lt;/role&gt;
+
+&lt;task&gt;
+Soạn lịch chăm sóc 3 tháng (tháng 5, 6, 7 năm 2026) cho vườn
+cacao giai đoạn kinh doanh năm thứ 5 tại Đắk Lắk, diện tích 10 ha.
+
+Với mỗi tuần, đưa ra:
+ · Công đoạn chính
+ · Lưu ý thời tiết (đang vào mùa mưa Tây Nguyên)
+ · Số công nhân ước tính
+ · Vật tư cần chuẩn bị
+
+Trình bày bảng Markdown: Tuần | Công đoạn | Lưu ý | Nhân công | Vật tư.
+Tối đa 12 dòng (3 tháng × 4 tuần).
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <div class="meta">4 tuần đầu tháng 5</div>
+                <table>
+                  <thead><tr><th>Tuần</th><th>Công đoạn</th><th>Lưu ý</th><th>NC</th></tr></thead>
+                  <tbody>
+                    <tr><td>T5/1</td><td>Tỉa cành tạo tán</td><td>Tránh ngày mưa</td><td>15 công</td></tr>
+                    <tr><td>T5/2</td><td>Bón thúc NPK đợt 1</td><td>Bón trước mưa 1–2 ngày</td><td>20 công</td></tr>
+                    <tr><td>T5/3</td><td>Phun phòng Phytophthora</td><td>Khi độ ẩm cao</td><td>8 công</td></tr>
+                    <tr><td>T5/4</td><td>Kiểm tra sâu bệnh + dặm cỏ</td><td>—</td><td>10 công</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Liều lượng thuốc BVTV Claude đưa chỉ mang tính tham khảo. Đối chiếu với khuyến cáo nhà sản xuất và danh mục được phép của Bộ NN&amp;PTNT — không áp dụng máy móc.</p>
+            </div>
+          </article>
+
+          <!-- T.04 -->
+          <article class="task-card">
+            <span class="task-num">T.04</span>
+            <h4>Tóm tắt nhật ký vườn thành báo cáo tuần</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Cuối tuần, tổ trưởng có hàng chục ghi chép rời. Cần rút thành báo cáo 1 trang gửi quản lý vườn trong vòng 24 giờ.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là thư ký giúp soạn báo cáo nông vụ tại CIC.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">[dán ghi chép thô cả tuần — có thể dài, rời rạc]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Viết báo cáo tuần theo cấu trúc:
+1) Tóm tắt (3 dòng)
+2) Công việc đã làm — nhóm theo lô, mỗi lô ≤ 3 bullet
+3) Sự cố / phát hiện — sâu bệnh, hỏng hóc, nghi vấn
+4) Kế hoạch tuần sau
+5) Kiến nghị cần phê duyệt (nếu có)
+
+Giới hạn 300 từ. Giữ số liệu quan trọng, bỏ chi tiết vụn vặt.
+Không "làm đẹp" thực trạng.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <div class="meta">Báo cáo tuần 15 – 21/4/2026</div>
+                <p><strong>Tóm tắt:</strong> Hoàn thành tỉa cành 4 lô theo kế hoạch. Phát hiện nấm Phytophthora nhẹ ở lô A3 — đã phun bổ sung.</p>
+                <p><strong>Công việc:</strong></p>
+                <ul>
+                  <li>Lô A1–A4: tỉa cành tạo tán, tổng 48 công</li>
+                  <li>Lô A3: phun Aliette 1 lần, 6 công, 4,2tr tiền thuốc</li>
+                </ul>
+                <p><strong>Sự cố:</strong> Máy bơm khu A ngừng sáng 18/4; đã sửa trong ngày.</p>
+                <p><strong>Kiến nghị:</strong> Duyệt bổ sung 5tr thuốc cho lô A3.</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Claude có xu hướng viết văn trơn hơn thực tế. Đọc lại để giữ tông chân thực, chèn con số chính xác nếu Claude tính thiếu.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- ═══ DEPT II · KẾ TOÁN ═══ -->
+        <div class="dept" id="dept-ketoan">
+          <div class="dept-head">
+            <div class="dept-kicker">Dept. II · Kế toán &amp; Tài chính</div>
+            <h3>Sổ sách, phân loại, BvA, thuế</h3>
+            <p>
+              Đội kế toán xử lý khối lượng lớn chứng từ, phân loại bút toán, và lập báo
+              cáo. Claude giúp giảm thao tác lặp và bắt sai sót thường gặp — nhưng
+              <em>không thay thế</em> việc đối chiếu sổ sách với chứng từ gốc.
+            </p>
+          </div>
+
+          <!-- T.01 -->
+          <article class="task-card">
+            <span class="task-num">T.01</span>
+            <h4>Đề xuất phân loại chi phí (CapEx vs OpEx) theo TT 99/2025</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Nhiều chi phí nằm giữa "cải tạo" (vốn hoá) và "sửa chữa" (chi phí kỳ). Claude đề xuất phân loại ban đầu theo mô tả &amp; giá trị.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là kế toán viên có kinh nghiệm IFRS và chuẩn mực
+Việt Nam — đặc biệt tài sản sinh học theo TT 99/2025/TT-BTC.&lt;/role&gt;
+
+&lt;context&gt;
+Công ty CIC (cacao) đang phân loại chi phí cuối tháng. Cần
+đề xuất KTCB (vốn hoá) hay SXKD (chi phí kỳ).
+&lt;/context&gt;
+
+&lt;input&gt;
+<span class="ph">[mỗi dòng: mô tả — số tiền, ví dụ:
+- Cải tạo đất khu C — 85tr
+- Thay ống tưới lô B1 — 12tr
+- Mua cây giống trồng dặm — 5tr
+- Công tỉa cành định kỳ — 8tr
+- Xây nhà ủ lên men mới — 320tr]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Với mỗi dòng:
+1) Đề xuất KTCB hay SXKD.
+2) Lý do ngắn (≤ 20 chữ).
+3) Độ chắc chắn: Cao / Trung bình / Thấp.
+4) Nếu Thấp, nêu câu hỏi cần hỏi kế toán trưởng.
+Trình bày bảng.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <table>
+                  <thead><tr><th>Mô tả</th><th>Số tiền</th><th>Đề xuất</th><th>Độ chắc</th></tr></thead>
+                  <tbody>
+                    <tr><td>Cải tạo đất khu C</td><td>85tr</td><td><strong>KTCB</strong></td><td>Cao</td></tr>
+                    <tr><td>Thay ống tưới lô B1</td><td>12tr</td><td>SXKD</td><td>Trung bình</td></tr>
+                    <tr><td>Mua cây giống trồng dặm</td><td>5tr</td><td><strong>KTCB</strong></td><td>Cao</td></tr>
+                    <tr><td>Công tỉa cành định kỳ</td><td>8tr</td><td>SXKD</td><td>Cao</td></tr>
+                    <tr><td>Xây nhà ủ lên men</td><td>320tr</td><td><strong>KTCB</strong></td><td>Cao</td></tr>
+                  </tbody>
+                </table>
+                <p style="margin-top:8px"><em>Câu hỏi cho dòng "thay ống tưới":</em> ống mới có công suất hoặc tuổi thọ cao hơn ống cũ không? Nếu có → có thể KTCB.</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Đây là <strong>đề xuất</strong> của AI, không phải quyết định. Kế toán trưởng chịu trách nhiệm cuối cùng. Lưu kết quả kèm ngày để có audit trail.</p>
+            </div>
+          </article>
+
+          <!-- T.02 -->
+          <article class="task-card">
+            <span class="task-num">T.02</span>
+            <h4>Rà soát bút toán tháng — tìm bất thường trước khi chốt sổ</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Trước chốt sổ, cần rà các bút toán đáng nghi — số tiền lớn, ngày cuối tháng, mô tả mơ hồ, khả năng trùng.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là kiểm soát nội bộ rà soát sổ cái.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">[danh sách bút toán: Số phiếu | Ngày | TK Nợ/Có |
+Số tiền | Mô tả]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Rà soát và liệt kê 4 nhóm đáng nghi:
+1) Số tiền lớn (trên 50tr) — có hợp lý không.
+2) Bút toán trong 2 ngày cuối tháng (khả năng accrual).
+3) Mô tả mơ hồ — "chi khác", "điều chỉnh", "tạm ứng".
+   Đề xuất câu hỏi làm rõ.
+4) Khả năng trùng — cùng số tiền, cùng đối tác, gần ngày.
+
+KHÔNG bịa số liệu — chỉ dùng dữ liệu trong &lt;input&gt;.
+Trình bày theo 4 nhóm.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <div class="meta">Nhóm 3 — Mô tả mơ hồ</div>
+                <ul>
+                  <li><strong>PK.058</strong> — "Chi phí khác Q1" — 210tr <span style="color:var(--oxblood)">⚠ cần làm rõ</span>. Đề nghị phân bổ chi tiết.</li>
+                  <li><strong>PK.071</strong> — "Điều chỉnh" — 45tr. Nguyên nhân điều chỉnh? Có chứng từ không?</li>
+                </ul>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Claude không thấy chứng từ gốc — chỉ nhận diện pattern. Phải đối chiếu phiếu chi, hợp đồng trước khi kết luận sai sót.</p>
+            </div>
+          </article>
+
+          <!-- T.03 -->
+          <article class="task-card">
+            <span class="task-num">T.03</span>
+            <h4>Viết commentary variance cho báo cáo BvA gửi CFO</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Cuối tháng, CFO cần commentary ngắn gọn (1–2 câu/dòng) giải thích biến động so ngân sách.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là FP&amp;A viết commentary cho báo cáo BvA.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">[bảng variance: Chỉ tiêu | Actual | Budget | Variance | %]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Với mỗi dòng có |%Var| ≥ 5%, viết 1–2 câu gồm:
+ · Driver chính (giá × lượng × mix, nếu biết)
+ · Đánh giá: tốt / xấu / trung tính
+ · Dự báo xu hướng tháng tới (nếu có cơ sở)
+
+Giọng chuyên nghiệp, súc tích, không buzzword. Trả về dạng bullet.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <ul>
+                  <li><strong>Doanh thu (+12,7%):</strong> Vượt do đơn xuất khẩu tháng 3 dồn sang tháng 4. Tích cực; duy trì nếu đối tác Hà Lan xác nhận Q2.</li>
+                  <li><strong>Giá vốn (+15,6%):</strong> Giá NPK tăng ~8% và nhân công mùa vụ cao hơn dự toán. Margin gộp thu hẹp nhẹ — cần theo dõi.</li>
+                  <li><strong>CP bán hàng (−12,7%):</strong> Hoãn triển lãm Q1; sẽ dồn vào Q2–Q3.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Số liệu dựa trên bảng; nhận định xu hướng tương lai là <em>giả định</em> — gắn cờ để CFO xác nhận trước khi gửi HĐQT.</p>
+            </div>
+          </article>
+
+          <!-- T.04 -->
+          <article class="task-card">
+            <span class="task-num">T.04</span>
+            <h4>Tóm tắt công văn / thông tư thuế mới</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Khi có thông tư, công văn thuế mới, kế toán cần nắm: ai bị ảnh hưởng, hiệu lực khi nào, cần làm gì.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là kế toán thuế, giải thích quy định mới dễ hiểu
+cho đồng nghiệp không chuyên thuế.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">[dán toàn văn công văn / thông tư]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Tóm tắt theo 5 mục:
+1) Tên văn bản, ngày ban hành, ngày hiệu lực.
+2) Đối tượng bị ảnh hưởng (có CIC không?).
+3) Thay đổi chính so với cũ (≤ 5 điểm).
+4) Việc CIC cần làm (bullet hành động cụ thể).
+5) Thời hạn quan trọng cần nhớ.
+
+Nếu có chỗ mập mờ, nêu câu hỏi để gửi kiểm toán / tư vấn thuế.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <p><strong>Văn bản:</strong> TT XX/2026/TT-BTC · ban hành 10/3/2026 · hiệu lực <strong>01/5/2026</strong>.</p>
+                <p><strong>Đối tượng:</strong> Doanh nghiệp nông nghiệp có tài sản sinh học — <strong>CIC thuộc nhóm này</strong>.</p>
+                <p><strong>Việc CIC cần làm:</strong></p>
+                <ul>
+                  <li>Rà soát bảng khấu hao vườn trước 30/4/2026</li>
+                  <li>Đào tạo kế toán viên về biểu mẫu mới</li>
+                  <li>Cập nhật phần mềm kế toán</li>
+                </ul>
+                <p><strong>Câu hỏi cần làm rõ:</strong> "Tài sản sinh học" ở Điều 3 có bao gồm cây non KTCB dưới 2 năm?</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Tóm tắt hỗ trợ — <strong>không thay thế tư vấn thuế chính thức</strong>. Điểm ảnh hưởng tài chính lớn phải xác nhận với kiểm toán / tư vấn thuế.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- ═══ DEPT III · SALES ═══ -->
+        <div class="dept" id="dept-sales">
+          <div class="dept-head">
+            <div class="dept-kicker">Dept. III · Kinh doanh &amp; Sales</div>
+            <h3>Báo giá, proposal, thị trường, dịch thuật</h3>
+            <p>
+              Đội kinh doanh đối diện khách B2B, đối tác xuất khẩu, và các kênh thị
+              trường. Claude giúp soạn thư chuyên nghiệp, dịch chuẩn mực, phân tích
+              tin tức — nhưng không thay thế am hiểu khách hàng cụ thể.
+            </p>
+          </div>
+
+          <!-- T.01 -->
+          <article class="task-card">
+            <span class="task-num">T.01</span>
+            <h4>Soạn email báo giá &amp; chào hàng B2B</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Sau khi nhận yêu cầu từ khách, sales cần soạn email báo giá chuyên nghiệp, đúng giọng CIC, trong vòng 1 giờ.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là account manager CIC — lịch sự, súc tích,
+giọng Việt tự nhiên.&lt;/role&gt;
+
+&lt;context&gt;
+CIC sản xuất cacao và chocolate premium, xuất khẩu và bán
+trong nước. Khách hiện tại: chuỗi bakery X tại TP.HCM.
+&lt;/context&gt;
+
+&lt;input&gt;
+<span class="ph">- Khách yêu cầu: 500 kg cacao bột tự nhiên 22%
+- Điều khoản: giao 7 ngày, thanh toán thuần 30 ngày sau giao
+- Lần đầu làm việc với chuỗi X
+- Giá niêm yết: 185.000 đ/kg; có thể giảm 3% cho đơn đầu</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Soạn email có:
+ · Chào mở (thân thiện, không suồng sã)
+ · Thông tin đơn hàng rõ ràng (bảng nhỏ)
+ · Đề xuất ưu đãi cho đơn đầu
+ · Nhắc brochure + chứng nhận đính kèm
+ · CTA: gợi ý call 15' để giới thiệu
+ · Chữ ký: Tên, chức danh, CIC
+
+Giới hạn 180 từ. Không dùng emoji. Tone: chuyên nghiệp, không cứng.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <p>Kính gửi anh/chị <em>[Tên]</em>,</p>
+                <p>Cảm ơn anh/chị đã quan tâm đến sản phẩm cacao của CIC. Dưới đây là báo giá sơ bộ cho yêu cầu của quý công ty:</p>
+                <table>
+                  <thead><tr><th>Sản phẩm</th><th>SL</th><th>Đơn giá</th><th>Thành tiền</th></tr></thead>
+                  <tbody><tr><td>Cacao bột tự nhiên 22%</td><td>500 kg</td><td>185.000 đ</td><td>92.500.000 đ</td></tr></tbody>
+                </table>
+                <p>Do đây là đơn đầu, CIC xin đề xuất <strong>giảm 3%</strong> — còn <strong>89.725.000 đ</strong>. Giao 7 ngày từ xác nhận. Thanh toán thuần 30 ngày sau giao.</p>
+                <p>Em gửi kèm brochure và chứng nhận ATVSTP. Nếu tiện, em xin hẹn call 15 phút trong tuần để giới thiệu kỹ hơn.</p>
+                <p>Trân trọng,<br/>[Họ tên] — Account Manager, CIC</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Kiểm lại <strong>số tiền tính toán</strong>, tên khách, giá niêm yết mới nhất trước khi gửi. Claude có thể sai phép tính.</p>
+            </div>
+          </article>
+
+          <!-- T.02 -->
+          <article class="task-card">
+            <span class="task-num">T.02</span>
+            <h4>Viết proposal ngắn tiếng Anh cho khách xuất khẩu</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Khi có lead xuất khẩu (EU, Nhật), cần proposal 1 trang tiếng Anh nhấn mạnh xuất xứ Đắk Lắk, tiêu chuẩn bền vững, khả năng cung.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;You are a senior B2B sales writer for CIC — a Vietnamese
+cacao &amp; chocolate producer in Đắk Lắk province.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">Lead: cafe chain "Nordic Sweets", Stockholm.
+Contact: Anna Lindgren, Head of Sourcing.
+Interest: organic cacao nibs, 3 tons/year, looking for
+Rainforest Alliance or equivalent certification.</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Draft a one-page proposal in British English with sections:
+1) Brief intro about CIC (≤ 80 words — origin, farmers, certs).
+2) Product fit — how our organic nibs match their need.
+3) Logistics &amp; pricing (EUR quote, FOB HCMC).
+4) Sustainability story (≤ 60 words).
+5) Next step — propose a 30-min discovery call.
+
+Tone: warm but professional. No buzzwords.
+Leave placeholders [like this] for figures to fill in.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <p><strong>A note from CIC, Đắk Lắk, Vietnam — for Nordic Sweets</strong></p>
+                <p>CIC is a second-generation cacao producer working with <em>[XX]</em> smallholder farmers across Đắk Lắk province. We specialise in single-origin organic cacao — grown under shade, fermented traditionally, traceable to the plot. We hold <em>[Rainforest Alliance / EU Organic — confirm]</em> and are currently in audit for Fair Trade…</p>
+                <p><strong>Why our nibs suit Nordic Sweets.</strong> Warm, nutty profile — low astringency, mild fruit notes typical of Đắk Lắk highlands. They perform well in direct-use pastries and premium inclusions…</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Mọi số liệu là <strong>placeholder</strong> — phải điền số thực. Giám đốc xuất khẩu nên review tên chứng nhận (dễ nhầm).</p>
+            </div>
+          </article>
+
+          <!-- T.03 -->
+          <article class="task-card">
+            <span class="task-num">T.03</span>
+            <h4>Phân tích thị trường cacao từ tin tức</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Quản lý sales cần nắm nhanh giá cacao toàn cầu và trong nước từ 5–10 bản tin để chuẩn bị họp tuần.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là nhà phân tích hàng hoá agribusiness.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">[dán 5–10 bản tin về cacao trong 2 tuần qua]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Tổng hợp brief 1 trang:
+1) Xu hướng giá (London, New York).
+2) 3 sự kiện chính ảnh hưởng (thời tiết, chính sách, cung cầu).
+3) Tác động cho CIC (tích cực / tiêu cực / chưa rõ).
+4) Câu hỏi cần xác nhận thêm.
+
+KHÔNG đưa con số không có trong input.
+Trích nguồn (tên bản tin) sau mỗi ý quan trọng.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <p><strong>Xu hướng giá:</strong> London +4,2% chạm 8.900 USD/tấn <em>(Reuters, 10/4)</em>. New York ICE tăng tương đương <em>(Bloomberg, 12/4)</em>.</p>
+                <p><strong>Tác động CIC:</strong></p>
+                <ul>
+                  <li><strong>Tích cực:</strong> biên gộp xuất khẩu có thể cải thiện 2–3 điểm.</li>
+                  <li><strong>Cần theo dõi:</strong> EU siết luật chống phá rừng 1/2026 — CIC đã có truy xuất, là lợi thế.</li>
+                </ul>
+                <p><strong>Câu hỏi:</strong> tỷ giá EUR/VND ảnh hưởng thế nào đến doanh thu quy đổi?</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Claude không truy cập internet — chỉ phân tích cái bạn dán vào. Muốn cập nhật, phải dán bản tin mới. Đừng nhầm "Claude đọc tin" với "Claude tìm tin".</p>
+            </div>
+          </article>
+
+          <!-- T.04 -->
+          <article class="task-card">
+            <span class="task-num">T.04</span>
+            <h4>Dịch tài liệu Việt ↔ Anh, giọng kinh doanh</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Dịch catalogue, brochure, email cho khách xuất khẩu — giữ "giọng CIC" (origin-focused, farmer-first).</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là biên dịch viên chuyên ngành cacao —
+tiếng Việt ↔ British English.&lt;/role&gt;
+
+&lt;source lang="vi"&gt;
+<span class="ph">[dán văn bản tiếng Việt]</span>
+&lt;/source&gt;
+
+&lt;task&gt;
+Dịch sang tiếng Anh với:
+ · Tone: professional but warm, suitable for B2B buyers.
+ · Giữ "CIC speak" (origin-focused, farmer-first).
+ · Số đo quốc tế (kg, tấn — không dùng tạ/yến).
+ · Quy đổi VND → EUR; ghi "at reference rate 1 EUR = [XXX] VND"
+   ở cuối.
+ · Tên riêng tiếng Việt giữ nguyên dấu: "Đắk Lắk", "CIC".
+
+Đầu ra: bản dịch, không giải thích.
+Câu mơ hồ → đánh dấu [?] và nêu ở cuối.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <p><strong>VI:</strong> "Trang trại CIC tại Đắk Lắk hợp tác với hơn 200 nông hộ…"</p>
+                <p><strong>EN:</strong> "Our CIC farms in Đắk Lắk work alongside more than 200 smallholder households…"</p>
+                <p style="font-family:var(--mono);font-size:12px;margin-top:6px"><em>[?] "giao hàng tận gốc" ở đoạn 3 — "farm-gate delivery" hay "door-to-door"? Cần xác nhận.</em></p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Với văn bản pháp lý (hợp đồng, điều khoản), <strong>không</strong> dùng bản dịch AI làm chính thức — phải qua dịch thuật công chứng trước khi ký.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- ═══ DEPT IV · HR/ADMIN ═══ -->
+        <div class="dept" id="dept-hr">
+          <div class="dept-head">
+            <div class="dept-kicker">Dept. IV · Hành chính &amp; Nhân sự</div>
+            <h3>Tuyển dụng, chính sách, họp, truyền thông</h3>
+            <p>
+              Đội HC/NS xử lý tuyển dụng, tài liệu nội bộ, chính sách, truyền thông
+              trong công ty. Claude giúp viết nhanh, thống nhất giọng, và xử lý khối
+              lượng lớn hồ sơ.
+            </p>
+          </div>
+
+          <!-- T.01 -->
+          <article class="task-card">
+            <span class="task-num">T.01</span>
+            <h4>Soạn JD (Job Description) cho vị trí tuyển mới</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Cần JD hấp dẫn nhưng chân thực, thể hiện tinh thần CIC, không phóng đại quyền lợi.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là HRBP soạn JD cho doanh nghiệp nông nghiệp gia
+đình.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">- Vị trí: Kỹ sư Nông nghiệp — Vườn Cacao
+- Địa điểm: Đắk Lắk (không WFH)
+- Cấp: 3–5 năm kinh nghiệm
+- Báo cáo: Giám đốc Nông vụ
+- Mức lương khung: 18–28tr (không đăng công khai)
+- Điểm hấp dẫn: đi hội thảo quốc tế, thưởng theo sản lượng</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Soạn JD gồm:
+1) Tóm tắt vị trí (3 dòng — tại sao vị trí thú vị)
+2) Trách nhiệm chính (5–7 bullet)
+3) Yêu cầu (must-have / nice-to-have)
+4) Chúng tôi offer gì (không nêu con số lương)
+5) Cách ứng tuyển
+
+Giọng thân thiện, ít sáo rỗng, nhấn mạnh gốc rễ và bền vững.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <p><strong>Kỹ sư Nông nghiệp — Vườn Cacao (CIC, Đắk Lắk)</strong></p>
+                <p>Bạn quan tâm đến cacao, thích ở gần vườn, và muốn vừa làm kỹ thuật vừa đóng góp vào câu chuyện nông nghiệp bền vững tại Tây Nguyên? Nhóm Nông vụ CIC đang tìm đồng đội mới để cùng chăm sóc 30+ lô cacao, thử nghiệm quy trình, và chia sẻ với các nông hộ đối tác…</p>
+                <p><strong>Bạn sẽ phụ trách:</strong></p>
+                <ul>
+                  <li>Lên lịch chăm sóc theo mùa cho 10–15 lô phụ trách</li>
+                  <li>Theo dõi sâu bệnh, đề xuất biện pháp xử lý</li>
+                  <li>Hỗ trợ tổ trưởng ghi chi phí và báo cáo tuần</li>
+                </ul>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Đọc lại phần "Bạn phù hợp nếu" để tránh phân biệt tuổi/giới. Không để Claude "vẽ" quyền lợi công ty chưa có.</p>
+            </div>
+          </article>
+
+          <!-- T.02 -->
+          <article class="task-card">
+            <span class="task-num">T.02</span>
+            <h4>Tóm tắt biên bản cuộc họp thành action items</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Sau họp 1–2 giờ, cần gửi biên bản + action items cho người tham dự trong 24 giờ.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là thư ký ghi biên bản cuộc họp.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">[dán transcript / ghi chép thô — có thể lộn xộn]</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Biên bản gồm:
+1) Thông tin họp (tên, ngày, người tham dự, chủ trì)
+2) Mục tiêu (1 câu)
+3) Quyết định chính (theo chủ đề)
+4) Action items — bảng: Việc | Ai phụ trách | Deadline
+5) Câu hỏi còn mở
+
+KHÔNG thêm thông tin không có trong input.
+Deadline chưa rõ → ghi "chưa xác định".
+Chưa phân công → ghi "chưa phân công — cần chốt".
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <div class="meta">Biên bản họp — Cập nhật vụ Hè 2026</div>
+                <p><strong>Quyết định chính:</strong> Duyệt +12% ngân sách thuốc BVTV vụ hè; hoãn trồng dặm khu D sang tháng 8; thử giống mới ở lô B1, B3.</p>
+                <table>
+                  <thead><tr><th>Việc</th><th>Phụ trách</th><th>Deadline</th></tr></thead>
+                  <tbody>
+                    <tr><td>Dự toán thuốc vụ hè chi tiết</td><td>Chị Mai (KS)</td><td>22/4/2026</td></tr>
+                    <tr><td>Đặt giống thử nghiệm</td><td>Anh Tú</td><td>01/5/2026</td></tr>
+                    <tr><td>Cập nhật KPI tháng 4</td><td>Phòng FP&amp;A</td><td>chưa xác định</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Claude chỉ biết những gì có trong transcript. Nếu người ghi bỏ sót câu, tóm tắt sẽ thiếu. Nên có người thứ hai đọc check trước khi gửi.</p>
+            </div>
+          </article>
+
+          <!-- T.03 -->
+          <article class="task-card">
+            <span class="task-num">T.03</span>
+            <h4>Viết thông báo / chính sách nội bộ</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Thông báo chính sách mới (giờ làm, nghỉ phép, văn hoá) — cần rõ ràng và thân thiện, không cứng nhắc.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là chuyên viên HC/NS của CIC, viết thông báo giọng
+thân thiện nhưng dứt khoát.&lt;/role&gt;
+
+&lt;input&gt;
+<span class="ph">- Chủ đề: Điều chỉnh giờ làm mùa khô (1/5 – 31/10)
+- Nội dung: vào làm 6h30, nghỉ trưa 2h, tan 16h30
+- Lý do: tránh giờ nắng gắt, bảo vệ sức khoẻ
+- Ngày áp dụng: 1/5/2026
+- Người ký: TGĐ</span>
+&lt;/input&gt;
+
+&lt;task&gt;
+Thông báo gồm:
+1) Tiêu đề ngắn
+2) Đoạn mở — giải thích LÝ DO trước, quy định sau
+3) Thay đổi cụ thể (bullet)
+4) Ai áp dụng / không áp dụng
+5) Thắc mắc — liên hệ ai
+6) Chữ ký
+
+Ấm nhưng rõ. Dưới 220 từ.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <div class="meta">Thông báo — Điều chỉnh giờ làm mùa khô 2026</div>
+                <p>Thân gửi toàn thể CBNV CIC,</p>
+                <p>Chúng ta đang bước vào mùa khô cao điểm ở Đắk Lắk, nhiều ngày trưa vượt 34°C. Để bảo vệ sức khoẻ của anh chị em làm ngoài vườn và nhà xưởng, công ty điều chỉnh giờ làm từ <strong>01/5 đến 31/10/2026</strong>:</p>
+                <ul>
+                  <li>Bắt đầu: 6h30</li>
+                  <li>Nghỉ trưa: 11h30 – 13h30</li>
+                  <li>Kết thúc: 16h30</li>
+                </ul>
+                <p>Áp dụng cho toàn bộ khối vườn &amp; nhà xưởng Đắk Lắk. Khối văn phòng TP.HCM giữ giờ làm hiện tại.</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Nếu chính sách ảnh hưởng <strong>lương / quyền lợi</strong>, gửi pháp chế review trước khi phát hành.</p>
+            </div>
+          </article>
+
+          <!-- T.04 -->
+          <article class="task-card">
+            <span class="task-num">T.04</span>
+            <h4>Review CV ứng viên — so khớp JD</h4>
+            <div class="field">
+              <span class="field-label">Bối cảnh</span>
+              <p>Đợt tuyển có 50–200 CV. Claude giúp sàng lọc nhanh, tập trung vào bằng chứng — không phán đoán thiên vị.</p>
+            </div>
+            <div class="field">
+              <span class="field-label">Prompt mẫu</span>
+<pre class="prompt-box">&lt;role&gt;Bạn là HR screener — công tâm, chỉ dựa trên bằng chứng
+trong CV, không phán đoán thiên vị.&lt;/role&gt;
+
+&lt;jd&gt;<span class="ph">[dán JD]</span>&lt;/jd&gt;
+&lt;cv&gt;<span class="ph">[dán nội dung CV]</span>&lt;/cv&gt;
+
+&lt;task&gt;
+1) Tóm tắt ứng viên (4 dòng): tên, kinh nghiệm, điểm nổi bật,
+   lý do ứng tuyển nếu có.
+2) So khớp JD — bảng: Yêu cầu | Đáp ứng (Có/Một phần/Không) | Bằng chứng.
+3) Điểm mạnh (2–3, gắn bằng chứng).
+4) Điểm làm rõ trong phỏng vấn (2–3 câu hỏi cụ thể).
+5) Đánh giá tổng: Rất phù hợp / Phù hợp / Ít phù hợp.
+
+TUYỆT ĐỐI không đánh giá dựa trên tên, giới, tuổi, trường.
+Chỉ dựa trên kinh nghiệm và bằng chứng.
+&lt;/task&gt;</pre>
+            </div>
+            <div class="field">
+              <span class="field-label">Ví dụ đầu ra (trích)</span>
+              <div class="output-box">
+                <p><strong>Ứng viên:</strong> Nguyễn Văn A — 4 năm vườn cà phê tại Gia Lai, có chứng chỉ Rainforest Alliance. Đang tìm việc gần nhà (gia đình chuyển về Đắk Lắk).</p>
+                <table>
+                  <thead><tr><th>Yêu cầu</th><th>Đáp ứng</th><th>Bằng chứng</th></tr></thead>
+                  <tbody>
+                    <tr><td>3–5 năm vườn cây lâu năm</td><td>Có</td><td>4 năm cà phê</td></tr>
+                    <tr><td>Kinh nghiệm cacao</td><td>Không</td><td>CV không đề cập</td></tr>
+                    <tr><td>Chứng nhận bền vững</td><td>Có</td><td>Rainforest Alliance</td></tr>
+                  </tbody>
+                </table>
+                <p><strong>Câu hỏi phỏng vấn:</strong> đã làm cacao chưa — nếu chưa, hình dung quá trình học? Vấn đề kỹ thuật khó nhất đã giải ở vườn cà phê?</p>
+                <p><strong>Đánh giá:</strong> <span style="color:var(--oxblood)"><strong>Phù hợp</strong></span> — chuyển sang vòng phỏng vấn.</p>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Lưu ý</span>
+              <p class="note-inline">Quyết định cuối thuộc về manager. Claude rà soát để tiết kiệm thời gian — không thay phán đoán con người. <strong>Không</strong> lưu CV đã review vào hệ thống không bảo mật.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 07 ============================================== -->
       <section id="faq" class="body-section">
-        <span class="sec-num">§ 06 · Hỏi đáp</span>
+        <span class="sec-num">§ 07 · Hỏi đáp</span>
         <h2>Câu hỏi <em>thường gặp</em></h2>
 
         <details>
@@ -615,9 +1565,9 @@ Giới hạn 120 từ, kết thúc bằng lời cảm ơn.</pre>
         </details>
       </section>
 
-      <!-- 07 ============================================== -->
+      <!-- 08 ============================================== -->
       <section id="resources" class="body-section">
-        <span class="sec-num">§ 07 · Tài nguyên</span>
+        <span class="sec-num">§ 08 · Tài nguyên</span>
         <h2>Đi <em>sâu hơn</em></h2>
 
         <ul class="clean-list">
@@ -649,7 +1599,7 @@ Giới hạn 120 từ, kết thúc bằng lời cảm ơn.</pre>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════ -->
+<\!-- ═══════════════════════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -664,6 +1614,7 @@ Giới hạn 120 từ, kết thúc bằng lời cảm ơn.</pre>
         <ul>
           <li><a href="#what">Claude là gì</a></li>
           <li><a href="#prompting">Viết prompt</a></li>
+          <li><a href="#departments">Theo phòng ban</a></li>
           <li><a href="#safety">Bảo mật</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
