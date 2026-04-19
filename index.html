@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hướng dẫn sử dụng Claude — Sổ tay nội bộ</title>
+<meta name="description" content="Sổ tay hướng dẫn nội bộ dành cho đội ngũ công ty — bắt đầu với Claude AI một cách hiệu quả và an toàn." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---------- RESET & BASE ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:#F0E9DA;
+  color:#151310;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+code,pre{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace}
+
+/* ---------- PALETTE (CSS vars) ---------- */
+:root{
+  --paper:#F0E9DA;
+  --paper-deep:#E6DFCE;
+  --ink:#151310;
+  --ink-soft:#4E473E;
+  --ink-ghost:#A8A090;
+  --oxblood:#8B3A2E;
+  --rule:#1F1C17;
+  --serif:'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ---------- LAYOUT ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+.grid{display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start}
+@media (max-width:960px){
+  .grid{grid-template-columns:1fr;gap:0}
+  .sidebar{position:static!important;padding:24px 0 0!important;border-bottom:1px solid var(--ink);margin-bottom:40px}
+  .sidebar ol{display:flex;flex-wrap:wrap;gap:6px 18px}
+  .sidebar li{margin:0}
+}
+
+/* ---------- TOP BAR ---------- */
+.topbar{
+  border-bottom:1px solid var(--rule);
+  padding:20px 0;
+  background:var(--paper);
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(6px);
+  background-color:rgba(240,233,218,0.92);
+}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+.brand{font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.brand .dot{color:var(--oxblood)}
+.meta{color:var(--ink-soft)}
+
+/* ---------- HERO ---------- */
+.hero{padding:100px 0 80px;border-bottom:1px solid var(--rule)}
+.hero-kicker{
+  font-family:var(--mono);font-size:13px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-soft);
+  display:flex;align-items:center;gap:12px;margin-bottom:24px;
+}
+.hero-kicker::before{content:"";display:inline-block;width:32px;height:1px;background:var(--oxblood)}
+.hero h1{
+  font-family:var(--serif);font-weight:400;font-size:clamp(48px,7vw,96px);
+  line-height:1.02;letter-spacing:-.015em;margin-bottom:28px;
+}
+.hero h1 em{font-style:italic;color:var(--oxblood);font-weight:300}
+.hero-sub{
+  font-family:var(--serif);font-size:clamp(20px,2.2vw,26px);
+  font-weight:300;color:var(--ink-soft);max-width:720px;line-height:1.5;
+}
+.hero-sub em{font-style:italic}
+
+/* ---------- BODY GRID ---------- */
+.body-section{padding:80px 0}
+.body-section + .body-section{border-top:1px solid var(--ink-ghost)}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+  position:sticky;top:90px;padding:20px 0;
+  font-family:var(--mono);font-size:13px;letter-spacing:.04em;
+}
+.sidebar-label{
+  text-transform:uppercase;color:var(--ink-soft);
+  font-size:11px;letter-spacing:.2em;margin-bottom:18px;
+  padding-bottom:12px;border-bottom:1px solid var(--ink-ghost);
+}
+.sidebar ol{list-style:none;counter-reset:toc}
+.sidebar li{counter-increment:toc;margin-bottom:10px}
+.sidebar li a{
+  display:flex;gap:14px;color:var(--ink-soft);
+  transition:color .2s;padding:4px 0;
+}
+.sidebar li a::before{
+  content:counter(toc,decimal-leading-zero);
+  color:var(--ink-ghost);flex-shrink:0;
+}
+.sidebar li a:hover,.sidebar li a.active{color:var(--ink)}
+.sidebar li a:hover::before,.sidebar li a.active::before{color:var(--oxblood)}
+
+/* ---------- SECTION TYPOGRAPHY ---------- */
+section[id]{scroll-margin-top:84px}
+.sec-num{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  color:var(--ink-soft);text-transform:uppercase;display:block;margin-bottom:14px;
+}
+h2{
+  font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,48px);
+  line-height:1.1;letter-spacing:-.01em;margin-bottom:20px;
+  max-width:14ch;
+}
+h3{
+  font-family:var(--serif);font-weight:400;font-size:24px;
+  line-height:1.3;margin:40px 0 12px;
+}
+h3 .num{
+  font-family:var(--mono);font-size:13px;color:var(--oxblood);
+  margin-right:12px;letter-spacing:.1em;
+}
+p{margin-bottom:16px;max-width:68ch}
+p + p{margin-top:0}
+strong{font-weight:600;color:var(--ink)}
+em{font-style:italic}
+
+/* ---------- DIVIDER ---------- */
+.deckrule{
+  display:flex;align-items:center;gap:20px;
+  color:var(--ink-ghost);font-family:var(--mono);font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;margin:40px 0 24px;
+}
+.deckrule::before,.deckrule::after{
+  content:"";flex:1;height:1px;background:var(--ink-ghost);
+}
+
+/* ---------- CARD ---------- */
+.card{
+  background:var(--paper-deep);
+  border:1px solid var(--ink);
+  padding:28px 32px;
+  margin:24px 0;
+  position:relative;
+}
+.card-title{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--oxblood);
+  margin-bottom:12px;
+}
+.card.warn{border-left:4px solid var(--oxblood)}
+.card.note{background:transparent;border:1px dashed var(--ink-ghost)}
+
+/* ---------- LIST ---------- */
+.clean-list{list-style:none;max-width:68ch}
+.clean-list li{
+  padding:14px 0;border-bottom:1px solid var(--ink-ghost);
+  display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:baseline;
+}
+.clean-list li:last-child{border-bottom:none}
+.clean-list .tag{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  color:var(--oxblood);text-transform:uppercase;
+}
+.clean-list .body strong{display:block;margin-bottom:2px}
+.clean-list .body span{color:var(--ink-soft);font-size:15px;line-height:1.55;display:block}
+
+/* ---------- COMPARISON ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0}
+@media (max-width:720px){.compare{grid-template-columns:1fr}}
+.compare .col{
+  background:var(--paper-deep);padding:24px;border:1px solid var(--ink);
+  position:relative;
+}
+.compare .col::before{
+  content:"";position:absolute;top:-1px;left:-1px;width:60px;height:4px;
+}
+.compare .bad::before{background:var(--ink-ghost)}
+.compare .good::before{background:var(--oxblood)}
+.compare h4{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:14px;color:var(--ink-soft);
+}
+.compare .good h4{color:var(--oxblood)}
+.compare pre{
+  font-size:13px;line-height:1.55;color:var(--ink);
+  white-space:pre-wrap;word-break:break-word;
+}
+
+/* ---------- CODE ---------- */
+pre.code{
+  background:#1A1814;color:#EFE8D8;
+  padding:20px 24px;margin:16px 0 24px;
+  font-size:13px;line-height:1.6;
+  border-left:3px solid var(--oxblood);
+  overflow-x:auto;
+}
+pre.code .k{color:#D9B99B}
+pre.code .s{color:#A9C9A4}
+pre.code .c{color:#8A8275;font-style:italic}
+
+/* ---------- FAQ ---------- */
+details{
+  border-bottom:1px solid var(--ink-ghost);padding:18px 0;
+}
+details summary{
+  list-style:none;cursor:pointer;font-family:var(--serif);
+  font-size:20px;line-height:1.35;display:flex;justify-content:space-between;gap:20px;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{
+  content:"+";font-family:var(--mono);color:var(--oxblood);
+  font-size:24px;font-weight:300;transition:transform .2s;
+}
+details[open] summary::after{content:"−"}
+details div{padding-top:14px;color:var(--ink-soft);max-width:68ch}
+
+/* ---------- TABLES ---------- */
+table{
+  width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:15px;
+}
+table th,table td{
+  text-align:left;padding:14px 16px;
+  border-bottom:1px solid var(--ink-ghost);
+}
+table th{
+  font-family:var(--mono);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-soft);font-weight:500;
+}
+table tr:hover td{background:var(--paper-deep)}
+
+/* ---------- FOOTER ---------- */
+footer{
+  border-top:1px solid var(--rule);margin-top:100px;padding:60px 0 80px;
+}
+footer .foot-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+  font-family:var(--mono);font-size:13px;color:var(--ink-soft);
+}
+@media (max-width:720px){footer .foot-grid{grid-template-columns:1fr}}
+footer h5{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:14px;color:var(--ink);
+}
+footer ul{list-style:none}
+footer li{padding:4px 0}
+footer a:hover{color:var(--oxblood)}
+.colophon{
+  margin-top:60px;padding-top:30px;border-top:1px solid var(--ink-ghost);
+  font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+
+/* ---------- ACCENT GLYPHS ---------- */
+.mark{
+  display:inline-block;width:10px;height:10px;border-radius:50%;
+  background:var(--oxblood);vertical-align:middle;margin:0 4px;
+}
+.kbd{
+  display:inline-block;font-family:var(--mono);font-size:12px;
+  padding:2px 8px;background:var(--paper-deep);border:1px solid var(--ink-ghost);
+  border-radius:3px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <span class="brand">Sổ Tay <span class="dot">·</span> Quiet Protocols</span>
+    <span class="meta">MMXXVI &nbsp;·&nbsp; Ấn bản nội bộ v.1.0</span>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">Pl. I · Hướng dẫn nội bộ</div>
+    <h1>Hướng dẫn sử dụng <em>Claude</em></h1>
+    <p class="hero-sub">
+      Một sổ tay ngắn dành cho đội ngũ công ty — cách bắt đầu với Claude,
+      cách viết prompt hiệu quả, cách sử dụng AI một cách <em>có trách nhiệm</em>
+      trong công việc hằng ngày.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="wrap">
+  <div class="grid">
+
+    <!-- SIDEBAR ================================================= -->
+    <aside class="sidebar">
+      <div class="sidebar-label">Mục lục</div>
+      <ol>
+        <li><a href="#what">Claude là gì</a></li>
+        <li><a href="#access">Cách truy cập</a></li>
+        <li><a href="#prompting">Viết prompt hiệu quả</a></li>
+        <li><a href="#usecases">Ứng dụng thường gặp</a></li>
+        <li><a href="#safety">Bảo mật &amp; giới hạn</a></li>
+        <li><a href="#faq">Câu hỏi thường gặp</a></li>
+        <li><a href="#resources">Tài nguyên</a></li>
+      </ol>
+    </aside>
+
+    <!-- CONTENT ================================================= -->
+    <main>
+
+      <!-- 01 ============================================== -->
+      <section id="what" class="body-section">
+        <span class="sec-num">§ 01 · Tổng quan</span>
+        <h2>Claude là gì, và <em>không phải</em> là gì</h2>
+        <p>
+          <strong>Claude</strong> là trợ lý AI do công ty <em>Anthropic</em> phát triển.
+          Claude có khả năng đọc hiểu văn bản dài, viết lại, phân tích dữ liệu,
+          lập trình, tóm tắt, dịch, và trò chuyện một cách mạch lạc bằng tiếng Việt
+          cũng như nhiều ngôn ngữ khác.
+        </p>
+        <p>
+          Điểm mạnh của Claude là khả năng <strong>suy luận theo ngữ cảnh dài</strong> —
+          có thể đọc vài chục trang tài liệu cùng lúc và trả lời sát nội dung.
+          Claude cũng được huấn luyện để từ chối các yêu cầu có hại, trung thực
+          khi không biết câu trả lời, và ít "bịa" hơn so với nhiều mô hình khác.
+        </p>
+
+        <div class="card note">
+          <div class="card-title">Cần phân biệt</div>
+          <p style="margin:0">
+            Claude <strong>không</strong> phải công cụ tìm kiếm. Mặc định, Claude
+            không truy cập internet theo thời gian thực. Dữ liệu huấn luyện của Claude
+            có một mốc thời gian nhất định — với các câu hỏi về sự kiện rất mới,
+            hãy kiểm chứng lại từ nguồn chính thức.
+          </p>
+        </div>
+      </section>
+
+      <!-- 02 ============================================== -->
+      <section id="access" class="body-section">
+        <span class="sec-num">§ 02 · Truy cập</span>
+        <h2>Cách bắt đầu</h2>
+
+        <ul class="clean-list">
+          <li>
+            <span class="tag">Web</span>
+            <div class="body">
+              <strong>claude.ai</strong>
+              <span>Giao diện chính trên trình duyệt. Đăng nhập bằng email công ty
+              (khuyến nghị) để được quản lý tập trung và tuân thủ chính sách bảo mật.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tag">Mobile</span>
+            <div class="body">
+              <strong>Ứng dụng iOS / Android</strong>
+              <span>Tải "Claude" từ App Store hoặc Google Play. Hữu ích khi cần trò chuyện
+              nhanh, chụp ảnh tài liệu để hỏi, hoặc ghi chú giọng nói khi đang di chuyển.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tag">Desktop</span>
+            <div class="body">
+              <strong>Ứng dụng desktop</strong>
+              <span>Cho Windows và macOS. Có thể đính kèm file, dùng chế độ
+              Cowork (tự động tạo/sửa file trong một thư mục), và kết nối công cụ
+              qua MCP.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tag">API</span>
+            <div class="body">
+              <strong>Claude API</strong>
+              <span>Dành cho đội kỹ thuật muốn tích hợp Claude vào sản phẩm nội bộ.
+              Liên hệ bộ phận IT để được cấp API key và hướng dẫn.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="deckrule">Gói sử dụng</div>
+        <table>
+          <thead>
+            <tr><th>Gói</th><th>Phù hợp với</th><th>Điểm chính</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Free</strong></td><td>Thử nghiệm cá nhân</td><td>Số tin nhắn giới hạn / ngày, không truy cập Projects</td></tr>
+            <tr><td><strong>Pro</strong></td><td>Cá nhân dùng thường xuyên</td><td>Nhiều tin nhắn hơn, Projects, tính năng nâng cao</td></tr>
+            <tr><td><strong>Team</strong></td><td>Nhóm &lt; 50 người</td><td>Quản trị, chia sẻ Projects, thanh toán tập trung</td></tr>
+            <tr><td><strong>Enterprise</strong></td><td>Doanh nghiệp</td><td>SSO, kiểm soát dữ liệu, SLA, triển khai riêng</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 03 ============================================== -->
+      <section id="prompting" class="body-section">
+        <span class="sec-num">§ 03 · Kỹ thuật</span>
+        <h2>Viết prompt <em>hiệu quả</em></h2>
+        <p>
+          Một prompt tốt không phải là một câu hỏi dài, mà là một <strong>bản brief rõ ràng</strong>.
+          Hãy nghĩ về nó như bạn đang nhờ một đồng nghiệp thông minh nhưng vừa bước vào phòng
+          và chưa biết gì về công việc của bạn.
+        </p>
+
+        <h3><span class="num">3.1</span> Nguyên tắc <em>CRAFT</em></h3>
+        <ul class="clean-list">
+          <li>
+            <span class="tag">C</span>
+            <div class="body"><strong>Context — Bối cảnh</strong>
+            <span>Bạn đang làm gì, ai là người đọc, dữ liệu đầu vào là gì.</span></div>
+          </li>
+          <li>
+            <span class="tag">R</span>
+            <div class="body"><strong>Role — Vai trò</strong>
+            <span>Yêu cầu Claude đóng vai chuyên gia phù hợp (luật sư hợp đồng, biên tập viên, v.v.).</span></div>
+          </li>
+          <li>
+            <span class="tag">A</span>
+            <div class="body"><strong>Action — Hành động</strong>
+            <span>Nêu rõ công việc cụ thể: tóm tắt, viết lại, phân tích, so sánh…</span></div>
+          </li>
+          <li>
+            <span class="tag">F</span>
+            <div class="body"><strong>Format — Định dạng</strong>
+            <span>Bảng, bullet, đoạn văn, JSON? Độ dài bao nhiêu?</span></div>
+          </li>
+          <li>
+            <span class="tag">T</span>
+            <div class="body"><strong>Tone — Giọng điệu</strong>
+            <span>Trang trọng, thân mật, kỹ thuật, hay dí dỏm?</span></div>
+          </li>
+        </ul>
+
+        <h3><span class="num">3.2</span> Ví dụ: trước và sau</h3>
+        <div class="compare">
+          <div class="col bad">
+            <h4>✕ Prompt yếu</h4>
+<pre>Viết email cho khách.</pre>
+          </div>
+          <div class="col good">
+            <h4>✓ Prompt tốt</h4>
+<pre>Bạn là một account manager lịch sự và ngắn gọn.
+Viết email bằng tiếng Việt gửi khách hàng X
+để hoãn buổi họp từ thứ 3 sang thứ 5 tuần này,
+giải thích lý do là trưởng bộ phận đi công tác,
+và đề xuất 2 khung giờ thay thế.
+Giới hạn 120 từ, kết thúc bằng lời cảm ơn.</pre>
+          </div>
+        </div>
+
+        <h3><span class="num">3.3</span> Dùng XML tag để tách nội dung</h3>
+        <p>
+          Khi prompt có nhiều thành phần (tài liệu nguồn, yêu cầu, ví dụ),
+          hãy gói từng phần trong thẻ để Claude hiểu rõ ranh giới:
+        </p>
+<pre class="code"><span class="c"># Ví dụ cấu trúc prompt</span>
+<span class="k">&lt;context&gt;</span>
+  Công ty ABC đang chuẩn bị báo cáo quý 1.
+<span class="k">&lt;/context&gt;</span>
+
+<span class="k">&lt;document&gt;</span>
+  [dán nội dung tài liệu vào đây]
+<span class="k">&lt;/document&gt;</span>
+
+<span class="k">&lt;task&gt;</span>
+  Tóm tắt 5 điểm chính, mỗi điểm ≤ 20 chữ.
+<span class="k">&lt;/task&gt;</span></pre>
+
+        <h3><span class="num">3.4</span> Mẹo nhanh</h3>
+        <ul class="clean-list">
+          <li><span class="tag">01</span><div class="body"><strong>Nghĩ theo bước</strong>
+            <span>Thêm câu "Suy luận từng bước trước khi trả lời" cho các bài toán khó.</span></div></li>
+          <li><span class="tag">02</span><div class="body"><strong>Cho ví dụ</strong>
+            <span>Một hoặc hai ví dụ mẫu ("few-shot") tăng chất lượng đầu ra đáng kể.</span></div></li>
+          <li><span class="tag">03</span><div class="body"><strong>Lặp lại</strong>
+            <span>Nếu kết quả chưa ưng ý, bảo Claude chỉnh sửa — đừng viết lại prompt từ đầu.</span></div></li>
+          <li><span class="tag">04</span><div class="body"><strong>Đặt giới hạn rõ</strong>
+            <span>"Trả lời dưới 200 từ", "Chỉ dùng dữ kiện trong tài liệu" — Claude tuân thủ tốt.</span></div></li>
+        </ul>
+      </section>
+
+      <!-- 04 ============================================== -->
+      <section id="usecases" class="body-section">
+        <span class="sec-num">§ 04 · Thực hành</span>
+        <h2>Ứng dụng <em>thường gặp</em> trong công việc</h2>
+
+        <h3><span class="num">4.1</span> Viết &amp; biên tập</h3>
+        <p>
+          Viết email, soạn thảo báo cáo, viết mô tả sản phẩm, dịch tài liệu,
+          chỉnh sửa ngữ pháp và giọng văn. Claude đặc biệt mạnh khi bạn cung cấp
+          một bản nháp và yêu cầu chỉnh lại theo tiêu chí cụ thể.
+        </p>
+
+        <h3><span class="num">4.2</span> Phân tích dữ liệu</h3>
+        <p>
+          Đính kèm file Excel, CSV, PDF và yêu cầu Claude tóm tắt, tìm xu hướng,
+          kiểm tra bất thường, hoặc viết công thức. Với bảng tính lớn, dùng chế độ
+          Claude in Excel hoặc API để xử lý mượt hơn.
+        </p>
+
+        <h3><span class="num">4.3</span> Lập trình</h3>
+        <p>
+          Viết mã, giải thích code của người khác, tìm bug, tối ưu hiệu năng,
+          review pull request. Đội kỹ thuật có thể dùng <strong>Claude Code</strong>
+          — công cụ dòng lệnh dành riêng cho coding agent.
+        </p>
+
+        <h3><span class="num">4.4</span> Tóm tắt &amp; chắt lọc</h3>
+        <p>
+          Biên bản họp dài, chuỗi email, bài nghiên cứu, hợp đồng — Claude có thể
+          rút ra những điểm chính, những bên liên quan, những cam kết, và các rủi ro.
+        </p>
+
+        <h3><span class="num">4.5</span> Brainstorm &amp; lập kế hoạch</h3>
+        <p>
+          Nghĩ ý tưởng chiến dịch, lập outline nội dung, phân tích SWOT,
+          lên lịch dự án, soạn câu hỏi phỏng vấn — Claude là một người đối thoại
+          kiên nhẫn, không phán xét, và sẵn sàng khám phá hướng đi mới.
+        </p>
+      </section>
+
+      <!-- 05 ============================================== -->
+      <section id="safety" class="body-section">
+        <span class="sec-num">§ 05 · Trách nhiệm</span>
+        <h2>Bảo mật &amp; giới hạn</h2>
+
+        <div class="card warn">
+          <div class="card-title">Quy tắc vàng</div>
+          <p style="margin:0">
+            <strong>Không bao giờ</strong> dán thông tin tuyệt mật (mật khẩu,
+            token, số thẻ tín dụng, dữ liệu định danh cá nhân của khách hàng,
+            hợp đồng NDA chưa được phép chia sẻ) vào cửa sổ chat.
+            Nếu không chắc, hãy hỏi bộ phận pháp chế hoặc IT trước.
+          </p>
+        </div>
+
+        <h3>Các nguyên tắc cốt lõi</h3>
+        <ul class="clean-list">
+          <li><span class="tag">I</span><div class="body"><strong>Kiểm chứng thông tin</strong>
+            <span>Claude có thể sai — đặc biệt với con số, ngày tháng, và sự kiện cụ thể. Luôn đối chiếu với nguồn gốc.</span></div></li>
+          <li><span class="tag">II</span><div class="body"><strong>Không sao chép nguyên văn</strong>
+            <span>Nội dung Claude tạo ra cần được biên tập và cá nhân hóa trước khi gửi ra ngoài. Tránh để email khách hàng đọc như máy viết.</span></div></li>
+          <li><span class="tag">III</span><div class="body"><strong>Ghi rõ khi công khai</strong>
+            <span>Nếu bài viết, hình ảnh, hoặc phân tích được công bố ra bên ngoài, hãy cân nhắc ghi nhận sự hỗ trợ của AI theo chính sách công ty.</span></div></li>
+          <li><span class="tag">IV</span><div class="body"><strong>Bảo vệ sở hữu trí tuệ</strong>
+            <span>Không dùng Claude để tái tạo nguyên văn tác phẩm có bản quyền. Tham khảo, học hỏi — không sao chép.</span></div></li>
+          <li><span class="tag">V</span><div class="body"><strong>Giữ chủ quyền quyết định</strong>
+            <span>Claude là cố vấn, không phải người ra quyết định. Với các vấn đề quan trọng (nhân sự, pháp lý, tài chính), quyết định cuối cùng luôn thuộc về con người có thẩm quyền.</span></div></li>
+        </ul>
+      </section>
+
+      <!-- 06 ============================================== -->
+      <section id="faq" class="body-section">
+        <span class="sec-num">§ 06 · Hỏi đáp</span>
+        <h2>Câu hỏi <em>thường gặp</em></h2>
+
+        <details>
+          <summary>Claude có học từ cuộc trò chuyện của tôi không?</summary>
+          <div>
+            Mặc định, các cuộc trò chuyện trên tài khoản Team/Enterprise <strong>không</strong>
+            được dùng để huấn luyện mô hình. Với tài khoản Free/Pro cá nhân,
+            hãy kiểm tra cài đặt quyền riêng tư — bạn có thể tắt chia sẻ dữ liệu.
+            Tham khảo chính sách của Anthropic để biết thông tin mới nhất.
+          </div>
+        </details>
+
+        <details>
+          <summary>Claude có hỗ trợ tiếng Việt tốt không?</summary>
+          <div>
+            Có. Claude hiểu và viết tiếng Việt tự nhiên, bao gồm các sắc thái
+            trang trọng / thân mật, và có thể dịch qua lại giữa tiếng Việt và
+            nhiều ngôn ngữ khác với độ chính xác cao.
+          </div>
+        </details>
+
+        <details>
+          <summary>Khi nào nên dùng Claude thay vì Google?</summary>
+          <div>
+            Dùng <strong>Google</strong> khi bạn cần tìm một trang, một sự kiện mới,
+            hoặc một con số cụ thể có thể kiểm chứng được.
+            Dùng <strong>Claude</strong> khi bạn cần tổng hợp, viết lại, giải thích,
+            phân tích, hoặc làm việc với tài liệu dài. Hai công cụ bổ sung cho nhau.
+          </div>
+        </details>
+
+        <details>
+          <summary>Claude có giới hạn số tin nhắn không?</summary>
+          <div>
+            Có, mỗi gói có hạn mức riêng (reset theo chu kỳ vài giờ). Nếu gặp
+            thông báo hết lượt, hãy đợi đến chu kỳ sau hoặc cân nhắc nâng cấp gói.
+            Team/Enterprise có hạn mức cao hơn đáng kể.
+          </div>
+        </details>
+
+        <details>
+          <summary>Tôi đính kèm file được không?</summary>
+          <div>
+            Được. Claude đọc được PDF, Word, Excel, CSV, hình ảnh, mã nguồn,
+            và nhiều định dạng khác. Với file rất lớn, hãy chia nhỏ hoặc
+            yêu cầu Claude xử lý từng phần.
+          </div>
+        </details>
+
+        <details>
+          <summary>Làm sao để đánh giá chất lượng câu trả lời?</summary>
+          <div>
+            Sử dụng nút 👍 / 👎 dưới mỗi câu trả lời để phản hồi cho Anthropic.
+            Trong nội bộ công ty, hãy đối chiếu với tài liệu nguồn và hỏi Claude
+            trích dẫn lại để tự kiểm tra.
+          </div>
+        </details>
+      </section>
+
+      <!-- 07 ============================================== -->
+      <section id="resources" class="body-section">
+        <span class="sec-num">§ 07 · Tài nguyên</span>
+        <h2>Đi <em>sâu hơn</em></h2>
+
+        <ul class="clean-list">
+          <li><span class="tag">01</span><div class="body">
+            <strong><a href="https://docs.claude.com" target="_blank" rel="noopener">docs.claude.com</a></strong>
+            <span>Tài liệu chính thức từ Anthropic — API, tính năng, cập nhật sản phẩm.</span></div></li>
+          <li><span class="tag">02</span><div class="body">
+            <strong><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Prompt Engineering Guide</a></strong>
+            <span>Hướng dẫn chính thức về cách viết prompt hiệu quả, nhiều ví dụ thực tế.</span></div></li>
+          <li><span class="tag">03</span><div class="body">
+            <strong><a href="https://support.claude.com" target="_blank" rel="noopener">support.claude.com</a></strong>
+            <span>Trung tâm hỗ trợ — câu hỏi thường gặp, khắc phục lỗi, chính sách.</span></div></li>
+          <li><span class="tag">04</span><div class="body">
+            <strong>Kênh <span class="kbd">#ai-claude</span> nội bộ</strong>
+            <span>Nơi chia sẻ prompt hay, trao đổi kinh nghiệm, và đặt câu hỏi với đội ngũ admin.</span></div></li>
+        </ul>
+
+        <div class="card" style="margin-top:40px">
+          <div class="card-title">Gợi ý thực hành</div>
+          <p style="margin:0">
+            Cách học nhanh nhất là dùng hằng ngày. Thử <strong>một việc nhỏ mỗi ngày</strong>:
+            viết một email, tóm tắt một bài báo, nghĩ một tiêu đề, so sánh hai phương án.
+            Sau hai tuần, bạn sẽ có trực giác về khi nào nên hỏi Claude, và hỏi như thế nào.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h5>Về tài liệu</h5>
+        <p style="color:var(--ink-soft);max-width:48ch;font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.5">
+          "một cuộc chuyện trò nhẹ như giấy."
+        </p>
+      </div>
+      <div>
+        <h5>Liên kết nhanh</h5>
+        <ul>
+          <li><a href="#what">Claude là gì</a></li>
+          <li><a href="#prompting">Viết prompt</a></li>
+          <li><a href="#safety">Bảo mật</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Liên hệ</h5>
+        <ul>
+          <li>IT helpdesk</li>
+          <li>Pháp chế</li>
+          <li>Kênh <span class="kbd">#ai-claude</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophon">
+      <span>Quiet Protocols · Pl. I · MMXXVI</span>
+      <span>Ấn bản nội bộ — không lưu hành</span>
+      <span>10°46′12″ N · 106°41′40″ E</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// highlight sidebar link on scroll
+const links = document.querySelectorAll('.sidebar a');
+const sections = [...document.querySelectorAll('section[id]')];
+function onScroll(){
+  const y = window.scrollY + 120;
+  let active = sections[0].id;
+  for(const s of sections){ if(s.offsetTop <= y) active = s.id; }
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+  });
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+</script>
+
+</body>
+</html>
